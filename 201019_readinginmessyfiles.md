@@ -1,3 +1,9 @@
+---
+title: Reading in Messy Files
+description: Because I needed to tell someone.
+permalink: /readingin
+---
+
 Today I encountered a folder with &gt;20,000 files in it, each with the
 hourly pollution data from a sensor. When I needed to read in all of
 them, I realized that each sensor records different data, which means

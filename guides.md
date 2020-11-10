@@ -9,9 +9,8 @@ This is a collection of not very serious write-ups of some coding I've enjoyed. 
 
 ## Posts
 
-* [Reading in Messy Files](./201019_readinginmessyfiles.md)
-* [Server Guide](./discord-server-guide)
-* [Issues](./discord-issues)
+* [Reading in Messy Files](./readingin)
+
 
 
 ## Links
