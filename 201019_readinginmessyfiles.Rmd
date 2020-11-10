@@ -2,7 +2,7 @@
 title: "Reading in Messy Files"
 author: "Sam Koss"
 date: "10/19/2020"
-output: html_document
+output: md_document
 ---
 
 ```{r setup, include=FALSE}

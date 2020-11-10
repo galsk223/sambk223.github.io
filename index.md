@@ -1,6 +1,6 @@
 ---
 layout: about
-title: Hello! I'm Sam Koss.
+title: Hello!
 description: Welcome.
 cover: true
 permalink: /
