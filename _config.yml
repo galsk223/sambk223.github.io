@@ -4,7 +4,7 @@
 # IMPORTANT: Set the URL of your site.
 # Set to https://<username>.github.io when hosting on GitHub Pages
 # (unless you are using a custom domain).
-url:                   https://austinhuang.me
+url:                   https://sambk223.github.io
 
 # IMPORTANT: Set The "base URL" of your site.
 # When your site sits in a subdirectory, set to /<name of directory>
@@ -23,10 +23,10 @@ baseurl:               ''
 lang:                  en
 
 # The title of your blog. Used in the sidebar and the browser tab.
-title:                 Austin Huang
+title:                 Sam Koss
 
 # A shorter description for the sidebar.
-tagline:               Code • Guide • Life
+tagline:               An R blog
 
 # A list of keywords for your blog
 keywords:              []
@@ -39,14 +39,14 @@ logo:                  /assets/icons/android-chrome-512x512.png
 # This should be the same author as first entry in `_data/authors.yml`.
 author:
   # Used by `jekyll-feed`:
-  name:                Austin Huang
-  email:               im@austinhuang.me
+  name:                Sam Koss
+  email:               sam.koss@colostate.edu
   social:
-    email: mailto:im@austinhuang.me
-    github: austinhuang0131
-    matrix: '@austin:privacytools.io'
-    reddit: austinhuang
-    telegram: austinhuang
+    email: mailto:sam.koss@colostate.edu
+    # github: austinhuang0131
+    # matrix: '@austin:privacytools.io'
+    # reddit: austinhuang
+    # telegram: austinhuang
   # # Used by `jekyll-seo-tag`:
   # twitter:             <username>
 
