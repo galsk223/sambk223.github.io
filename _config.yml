@@ -52,12 +52,12 @@ author:
 
 # Add links to the sidebar.
 menu:
-  - title:             R Blog
-    url:               /guides
   - title:             CV
     url:               /services
-  - title:             About Me
-    url:               /donate
+  - title:             R Blog
+    url:               /guides
+
+
 
 legal:
   - title: License
