@@ -9,7 +9,7 @@ This is a collection of not very serious write-ups of some coding I've enjoyed. 
 
 ## Posts
 
-* [Reading in Messy Files](https://sambk223.github.io/201019_readinginmessyfiles.md)
+* [Reading in Messy Files](/readingin)
 
 
 
