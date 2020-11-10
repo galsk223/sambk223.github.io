@@ -1,0 +1,120 @@
+---
+title: "Reading in Messy Files"
+author: "Sam Koss"
+date: "10/19/2020"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = T,
+                      eval = F)
+```
+
+Today I encountered a folder with >20,000 files in it, each with the hourly pollution data from a sensor. When I needed to read in all of them, I realized that each sensor records different data, which means each file is different. Usually when I encounter this, I group the files into like groups, reach each group in on its own, and then bind them all together. But that only works for <10 files (depending on your patience). This is the solution I came up with for dealing with a healthy amount of files. 
+
+## The General Setup
+I list out all the files, and set up to loop over each one. I usually start here, and add complexity as I need to.
+
+```{r}
+library(vroom)
+library(tidyverse)
+
+fld <- list.files("sensor_data", full.names = T)
+
+all_data <- map_dfr(fld,function(f){
+  
+  r1 <- vroom(f, delim = ",")
+  
+})
+```
+
+And of course I used `vroom` -- it's the quickest (see some great [benchmarking](https://www.danielecook.com/speeding-up-reading-and-writing-in-r/)). One of my errors was that one file couldn't figure out the delimiter, so I added that specification as well.
+
+## Be Dynamic When Possible
+dplyr really let's me take advantage of dynamic column creation. Using `mutate_if` I was able to find that sneaky date column, extract just the date, and name it something nice. I also wanted to average by days -- now that I have my date column named solidly, all I need is to find my columns of interest. Once again, dplyr helps out. I haven't gotten up to speed with dplyr's new [`across`](https://dplyr.tidyverse.org/reference/across.html), but I really should.
+
+```{r}
+r1 <- vroom(f, delim = ",") %>% 
+  mutate_if(~is.POSIXct(.), list(Date = ~date(.))) %>% 
+  group_by(id,Date) %>% 
+  summarise_at(vars(contains("PM")), ~mean(.)) %>% 
+  ungroup()
+```
+
+## Ignore the Rest
+I even got some errors about files not having identifiers. Since my mapping of sensors to locations is based on the `id` column, if the data doesn't have that column it's no use to me. So I added that `if` loop in there. And it may not be best practice to use this logic format, but gosh do I love the numeric nature of Boolean values.
+
+```{r}
+if (max(str_detect(colnames(r1),"^id$"))==1) {
+  # do the thing
+}
+```
+
+And of course a bit of [regex](https://github.com/rstudio/cheatsheets/blob/master/strings.pdf) to make sure there's no column `fiddle` throwing us off.
+
+## Caching Often
+How often? Who knows. But once I realized how rough the process could be, I knew I would need to cache. The naming doesn't matter since they'll all be binded together in the end.
+
+```{r}
+fld <- list.files("sensor_data", full.names = T) # file list
+ext <- c(seq(1,length(fld),1000),length(fld)+1) # exterior list, a helper
+
+data_all <- map(2:(length(ext)),function(n){
+  
+  int <- fld[ext[n-1]:(ext[n]-1)] # interior list, a helper
+  
+  data_some <- map_dfr(int,function(f){
+    # read and clean
+  })
+  
+  write_rds(data_some,paste0("data/nationwide/",n,"_data.rds"))
+  
+})
+
+```
+
+It took a minute to set up the `ext` and `int` lists to line up with the file-list. I wanted to break up the files (in an exterior list) into ~1,000 file chunks and to be sure that I wouldn't leave any out. I also wanted my interior list to start on the first item of the exterior list, and go up to (but not include) the next item. 
+
+```{r eval=T, echo=T}
+`length(fld)` <- 20484
+ext <- c(seq(1,`length(fld)`,1000),`length(fld)`+1) # exterior list
+print(ext)
+```
+
+To do this, I added 1 to the length of the files in my exterior list. In the interior list, I subtract one from the index for the lower bound, and then subtract one from the output for the upper bound.
+
+```{r eval=T, echo=T}
+n <- 4 # for example
+int <- ext[n-1]:(ext[n]-1) # interior list
+print(min(int))
+print(max(int))
+```
+
+## Putting It All Together
+```{r}
+fld <- list.files("sensor_data", full.names = T)
+ext <- c(seq(1,length(fld),1000),length(fld)+1)
+
+data_all <- map(2:(length(ext)),function(n){
+  
+  int <- fld[ext[n-1]:(ext[n]-1)]
+  
+  data_some <- map_dfr(int,function(f){
+    
+    r1 <- vroom(f, delim = ",")
+    
+    if (max(str_detect(colnames(r1),"^id$"))==1) {
+      r2 <- r1 %>% 
+        mutate_if(~is.POSIXct(.), list(Date = ~date(.))) %>% 
+        group_by(id,Date) %>% 
+        summarise_at(vars(contains("PM")), ~mean(.)) %>% 
+        ungroup()
+    }
+    
+  })
+  
+  write_rds(data_some,paste0("data/nationwide/",n,"_data.rds"))
+  
+})
+```
+There ya have it folx. One frustrating hour for me, one weird 5 minute read for you. 

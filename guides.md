@@ -1,19 +1,22 @@
 ---
-title: The Guides I offer!
-description: Some freebies to take away from this website!
+title: R Blog
+description: Because I needed to tell someone.
+permalink: /guides
 ---
 
-"Freebies" means you're free to view/share them. Please respect [the license](./license).
+This is a collection of not very serious write-ups of some coding I've enjoyed. Maybe I like the solution I used, maybe I came up with something snazzy I want to remember, maybe I figured out one way to do something and want others to check it out and tell me all the better ways I didn't think of. 
 
-## The Discord Trilogy
 
-Even though I have mainly left Discord (save certain essential work), I still have these guides.
+## Posts
 
-* [Advertising](./advertising): Ways to promote your Discord server.
-* [Server Guide](./discord-server-guide): Ways to grow your Discord server.
-* [Issues](./discord-issues): Internal corruption and faults of Discord.
+* [Reading in Messy Files](./201019_readinginmessyfiles.html)
+* [Server Guide](./discord-server-guide)
+* [Issues](./discord-issues)
 
-## Others
 
-* [BVE Trainsim 5 Survival Guide](./bve): Ditch the expensive Steam simulators and embrace this Japanese masterpiece!
-* [Compare Instagram following/followers](./instagram-compare): Weed out the fakes!
+## Links
+
+* [Tabula](https://tabula.technology/): sweet way to import pdf to csv
+* [RcppAlgos](https://jwood000.github.io/RcppAlgos/index.html): very cool quick combinations and permutations, among others
+* [Coolors](https://coolors.co/): colors galore
+* Tufte: yeah
