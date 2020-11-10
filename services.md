@@ -4,4 +4,4 @@ description:
 permalink: /services
 ---
 
-<embed src="https://sumanbogati.github.io/CV_koss.pdf" type="application/pdf" />
+<embed src="https://sambk223.github.io/CV_koss.pdf" type="application/pdf" />
