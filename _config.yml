@@ -43,20 +43,20 @@ author:
   email:               sam.koss@colostate.edu
   social:
     email: mailto:sam.koss@colostate.edu
-    # github: austinhuang0131
-    # matrix: '@austin:privacytools.io'
-    # reddit: austinhuang
-    # telegram: austinhuang
+    # github: 
+    # matrix: 
+    # reddit: 
+    # telegram: 
   # # Used by `jekyll-seo-tag`:
   # twitter:             <username>
 
 # Add links to the sidebar.
 menu:
-  - title:             Guides
+  - title:             R Blog
     url:               /guides
-  - title:             Services
+  - title:             CV
     url:               /services
-  - title:             gib money
+  - title:             About Me
     url:               /donate
 
 legal:
